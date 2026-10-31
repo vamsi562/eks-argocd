@@ -35,7 +35,7 @@ eg: to create two namespaces i.e roboshop & expense, two yamls were created in n
 
 ### argo cd uses
 - manage cluster - mostly suitable for this 
-- deployment - we cant control as if any change push to github, argo cd automatically refreshs. Deploying controlled way recommended.
-  - in this cas we can write an application yaml, which contains argocd and helm 
-
+- deployment - we cant control as if any change push to github, argo cd automatically refreshs. Deploying controlled way recommended.argo cd doesnot fit for deploying to controlled environment. any new change push to repo it will deploy to all environments
+  - in this case we can write an application yaml, which contains argocd and helm. 
+  - we can perform deployment by stopping automated in argo cd i.e automated sync etc
 refer - catalogue-deploy repo for application.yaml
