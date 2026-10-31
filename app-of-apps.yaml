@@ -1,0 +1,35 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: platform-root
+  namespace: argocd # Always deploy the Application CRD into the namespace where Argo CD is running
+spec:
+  # The project the application belongs to (defaults to 'default')
+  project: default
+
+  # Source defines where the Kubernetes manifests or Helm charts live
+  source:
+    repoURL: "https://github.com/vamsi562/eks-argocd.git" # Your Git repository URL
+    targetRevision: main # The branch, tag, or commit hash (e.g., main, v1.0.0)
+    path: applications # The directory path inside the repo containing the manifests
+
+  # Destination defines where the resources will be deployed
+  destination:
+    server: "https://kubernetes.default.svc" # The cluster URL ('in-cluster' targets the local Argo CD cluster)
+    namespace: argocd # The target namespace for your application
+
+  # SyncPolicy controls how changes are applied from Git to the cluster
+  syncPolicy:
+    automated:
+      prune: true # Automatically deletes resources from K8s if they are removed from Git
+      selfHeal: true # revert manual cluster changes, sync with git repo
+    #   allowEmpty: false # Prevents wiping out the cluster if the Git directory becomes empty
+    # syncOptions:
+    #   - CreateNamespace=true # Automatically creates the target namespace if it doesn't exist
+    #   - Validate=false # Disables kubectl validation (useful for certain CRDs)
+    # retry:
+    #   limit: 5 # Number of failed sync retry attempts
+    #   backoff:
+    #     duration: 5s # Initial retry delay
+    #     factor: 2 # Delay multiplier for consecutive failures
+    #     maxDuration: 3m # Maximum allowable delay window
