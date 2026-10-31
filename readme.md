@@ -19,6 +19,12 @@ argocd admin initial-password -n argocd <!-- initial password, username admin --
 
 argocd account update-password
 
-## Steps
+##
 - In argocd, everything is a application
+- for managing namespaces, storage classes, ebs, efs
+we will create separate folders for each i.e namespace - we will keep all our namespace yamls here & similar
+- another applications folder where we define main yamls related to argocd and reference respective git url in source
+eg: to create two namespaces i.e roboshop & expense, two yamls were created in namespace folder. In applications folder we create a namespace yaml that include api version of argocd , refer above namespace folder git url.
+- argo cd by default sync every minutes. we can change it, by modifying argocd config amp by adding
+        ` time.reconciliation: <time in seconds> ` 
 - 
