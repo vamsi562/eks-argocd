@@ -31,3 +31,11 @@ eg: to create two namespaces i.e roboshop & expense, two yamls were created in n
 ## app of apps:
 - here we create another yaml and under source path we provide applications folder
 - once we this yaml applied it will create all under applications folder - namespace, storage class
+
+
+### argo cd uses
+- manage cluster - mostly suitable for this 
+- deployment - we cant control as if any change push to github, argo cd automatically refreshs. Deploying controlled way recommended.
+  - in this cas we can write an application yaml, which contains argocd and helm 
+
+refer - catalogue-deploy repo for application.yaml
