@@ -27,4 +27,7 @@ we will create separate folders for each i.e namespace - we will keep all our na
 eg: to create two namespaces i.e roboshop & expense, two yamls were created in namespace folder. In applications folder we create a namespace yaml that include api version of argocd , refer above namespace folder git url.
 - argo cd by default sync every minutes. we can change it, by modifying argocd config amp by adding
         ` time.reconciliation: <time in seconds> ` 
-- 
+
+## app of apps:
+- here we create another yaml and under source path we provide applications folder
+- once we this yaml applied it will create all under applications folder - namespace, storage class
