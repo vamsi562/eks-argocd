@@ -3,6 +3,8 @@ kind: Application
 metadata:
   name: storage-class
   namespace: argocd # Always deploy the Application CRD into the namespace where Argo CD is running
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io # Enables cascading delete (removes K8s resources if the app is deleted)
 spec:
   # The project the application belongs to (defaults to 'default')
   project: default
